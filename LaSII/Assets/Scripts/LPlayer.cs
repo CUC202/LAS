@@ -107,7 +107,7 @@ public class LPlayer : MonoBehaviour {
                 rb.velocity = new Vector2(rb.velocity.x, initialJump);
                 if (Mathf.Abs(co) == 1.0f)
                 {
-                    rb.velocity += new Vector2(rb.position.x - sPlayer.position.x, rb.position.y - sPlayer.position.y) * coSpeed * Input.GetAxis("LCooperate") / Vector2.Distance(getPos(rb.position), getPos(sPlayer.position));
+                    rb.velocity += new Vector2(rb.position.x - sPlayer.position.x, rb.position.y - sPlayer.position.y) * coSpeed * co / Vector2.Distance(getPos(rb.position), getPos(sPlayer.position));
                 }
                 jumpInitial = false;
             }
@@ -118,7 +118,7 @@ public class LPlayer : MonoBehaviour {
                 rb.AddForce(Vector2.up * jumpForce);
                 if (Mathf.Abs(co) == 1.0f)
                 {
-                    rb.AddForce(new Vector2(rb.position.x - sPlayer.position.x, rb.position.y - sPlayer.position.y) * coForce * Input.GetAxis("LCooperate") / Vector2.Distance(getPos(rb.position), getPos(sPlayer.position)));
+                    rb.AddForce(new Vector2(rb.position.x - sPlayer.position.x, rb.position.y - sPlayer.position.y) * coForce * co / Vector2.Distance(getPos(rb.position), getPos(sPlayer.position)));
                 }
 
             }
@@ -132,7 +132,7 @@ public class LPlayer : MonoBehaviour {
     //检查落地
     public void GroundCheck()
     {
-        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Platform")) || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("SPlayer"));
+        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Platform"));
     }
 
     //转向
