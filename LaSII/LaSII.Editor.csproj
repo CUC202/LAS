@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{19B46D81-F2A4-BD47-EE3B-C0D8F8419664}</ProjectGuid>
+    <ProjectGuid>{3C72FA9E-7E46-9BDB-6DC3-EED9469FBD24}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.1.1f1</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -55,11 +55,23 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>Library\UnityAssemblies\UnityEngine.TestRunner.dll</HintPath>
@@ -70,50 +82,72 @@
     <Reference Include="UnityEngine.Timeline">
       <HintPath>Library\UnityAssemblies\UnityEngine.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Timeline">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TreeEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TreeEditor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.HoloLens">
+      <HintPath>Library\UnityAssemblies\UnityEditor.HoloLens.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="BugReportUtils">
+      <HintPath>Assets\2DDL\2DLight\BugReport\Editor\BugReportUtils.dll</HintPath>
+    </Reference>
     <Reference Include="Resources2DDL">
       <HintPath>Assets\2DDL\2DLight\Utils\Resources2DDL.dll</HintPath>
     </Reference>
+    <Reference Include="Assembly-UnityScript">
+      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\2DDL\2DLight\AssetUtility\AssetUtility.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Core\CasterCollider.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Core\CoreUtils.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Core\DynamicLight.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Core\DynamicLightEvents.cs" />
-    <Compile Include="Assets\2DDL\2DLight\PropertyDrawers\Attributes.cs" />
-    <Compile Include="Assets\2DDL\2DLight\PropertyDrawers\ButtonAttributeDrawer.cs" />
-    <Compile Include="Assets\2DDL\2DLight\PropertyDrawers\FieldDescriptionAttributeDrawer.cs" />
-    <Compile Include="Assets\2DDL\2DLight\PropertyDrawers\IncrementableAttribute.cs" />
-    <Compile Include="Assets\2DDL\2DLight\PropertyDrawers\IncrementableAttributeDrawer.cs" />
-    <Compile Include="Assets\2DDL\2DLight\PropertyDrawers\PopUpAttributeDrawer.cs" />
-    <Compile Include="Assets\2DDL\2DLight\PropertyDrawers\SeparatorAttributeDrawer.cs" />
-    <Compile Include="Assets\2DDL\2DLight\PropertyDrawers\TitleAttributeDrawer.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Sight\SightListenerTemplate.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Utils\more\CoroutineExt\CoroutineExtentions.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Utils\more\ExtendsMe.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Utils\more\GLDebug.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Utils\more\interface_touch.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Utils\more\SetRenderQueue.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Utils\more\TablaSenoCoseno.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Utils\more\TimerClass.cs" />
-    <Compile Include="Assets\2DDL\2DLight\Utils\RegisterCaster.cs" />
-    <Compile Include="Assets\2DDL\Add-ons\AddOnBase\AddOnBase.cs" />
-    <Compile Include="Assets\2DDL\Add-ons\ColorBlending.cs" />
-    <Compile Include="Assets\2DDL\Add-ons\Fire.cs" />
-    <Compile Include="Assets\2DDL\Add-ons\Illumination.cs" />
-    <Compile Include="Assets\2DDL\Add-ons\LensFlares.cs" />
-    <Compile Include="Assets\2DDL\Add-ons\LookAt.cs" />
-    <Compile Include="Assets\2DDL\Add-ons\Rotation.cs" />
-    <Compile Include="Assets\2DDL\Add-ons\Source.cs" />
-    <Compile Include="Assets\Scripts\GameCtrl.cs" />
-    <Compile Include="Assets\Scripts\LPlayer.cs" />
-    <Compile Include="Assets\Scripts\SPlayer.cs" />
+    <ProjectReference Include="LaSII.csproj">
+      <Project>{19B46D81-F2A4-BD47-EE3B-C0D8F8419664}</Project>
+      <Name>LaSII</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\2DDL\2DLight\BugReport\Editor\BugReportWindow.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\CheckUpdate\CheckUpdateAsset.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\CheckUpdate\CheckUpdateBuilder.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\CheckUpdate\CheckUpdateWindow.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\DynamicLightDrawGizmo.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\DynamicLightEditor.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\DynamicLightHierarchyIcon.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\DynamicLightMenu.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\EditorUtils.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\PostProcessMethods.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\Settings\DynamicLightSetting.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\Settings\SettingsManager.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\Settings\SettingsWindow.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\Settings\TagLayerClass.cs" />
+    <Compile Include="Assets\2DDL\2DLight\Core\Editor\SortingMethod.cs" />
+    <Compile Include="Assets\2DDL\Add-ons\AddOnBase\Editor\AddOnBaseEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\2DDL\2DLight\Shaders\CGTexturizing.shader" />
