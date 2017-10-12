@@ -6,7 +6,7 @@ public class LP_Skill : MonoBehaviour
 {
     float lit_sc;
     public float biggest = 3.0f;//光的最大scale
-    public float litspeed = 2.0f;
+    public float litspeed = 5.0f;
     public float newLightScale = 1.0f;//留下的光的初始scale
 
     Vector3 lpscale;
