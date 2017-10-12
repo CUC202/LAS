@@ -32,6 +32,7 @@ public class LP_Skill : MonoBehaviour
     void LightUp()
     {
         this.transform.localScale = new Vector3(lit_sc, lit_sc, lit_sc);
+        GameObject.Find("LightMask").GetComponent<Transform>().localScale = new Vector3(lit_sc*5, lit_sc*5, lit_sc);
         if (Input.GetKey(KeyCode.Z) && lit_sc > 0f && lit_sc < biggest)//测试用，input setting里有LPS1
         {
             //同时损耗能量
