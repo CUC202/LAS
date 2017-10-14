@@ -79,6 +79,18 @@
     <Reference Include="Resources2DDL">
       <HintPath>Assets\2DDL\2DLight\Utils\Resources2DDL.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween43">
+      <HintPath>Assets\Demigiant\DOTween\DOTween43.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween46">
+      <HintPath>Assets\Demigiant\DOTween\DOTween46.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween50">
+      <HintPath>Assets\Demigiant\DOTween\DOTween50.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\2DDL\2DLight\AssetUtility\AssetUtility.cs" />
@@ -111,9 +123,14 @@
     <Compile Include="Assets\2DDL\Add-ons\LookAt.cs" />
     <Compile Include="Assets\2DDL\Add-ons\Rotation.cs" />
     <Compile Include="Assets\2DDL\Add-ons\Source.cs" />
-    <Compile Include="Assets\Scripts\GameCtrl.cs" />
-    <Compile Include="Assets\Scripts\LPlayer.cs" />
-    <Compile Include="Assets\Scripts\SPlayer.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
+    <Compile Include="Assets\MyScripts\CameraMove.cs" />
+    <Compile Include="Assets\MyScripts\Combine.cs" />
+    <Compile Include="Assets\MyScripts\GameCtrl.cs" />
+    <Compile Include="Assets\MyScripts\LP_Skill.cs" />
+    <Compile Include="Assets\MyScripts\LPlayer.cs" />
+    <Compile Include="Assets\MyScripts\SPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\2DDL\2DLight\Shaders\CGTexturizing.shader" />
@@ -129,6 +146,12 @@
     <None Include="Assets\2DDL\2DLight\Shaders\VertexColor.shader" />
     <None Include="Assets\2DDL\2DLight\Shaders\occluded.shader" />
     <None Include="Assets\2DDL\2DLight\Shaders\occluder.shader" />
+    <None Include="Assets\Demigiant\DOTween\DOTween.XML" />
+    <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
+    <None Include="Assets\Demigiant\DOTween\DOTween46.xml" />
+    <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
+    <None Include="Assets\Demigiant\DOTween\Editor\DOTweenEditor.XML" />
+    <None Include="Assets\Demigiant\DOTween\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

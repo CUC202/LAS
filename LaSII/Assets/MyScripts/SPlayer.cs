@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class SPlayer : MonoBehaviour {
     [HideInInspector]
@@ -15,9 +16,11 @@ public class SPlayer : MonoBehaviour {
     public bool jump = false;                   //跳跃开关
     [HideInInspector]
     public float co;                            //合作输入开关
+    [HideInInspector]
+    public bool independent;                    //角色独立状态
 
     //合作相关变量
-    public Transform lPlayer;                   //影的位置信息
+    public Transform lPlayer;                   //光的位置信息
     public float coForce;                       //合作技能刚体力
     public float coSpeed;                       //合作技能初速度
 
@@ -40,6 +43,7 @@ public class SPlayer : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.Find("SGroundCheck");
+        independent = true;
     }
     // 每帧检测指令
     void Update()
@@ -53,7 +57,7 @@ public class SPlayer : MonoBehaviour {
         // 跳跃检测
         JumpCheck();
         // 调整重力
-        if (Mathf.Abs(co) == 1.0f)
+        /*if (Mathf.Abs(co) == 1.0f)
         {
             if (rb.gravityScale != 0)
                 rb.gravityScale = 0;
@@ -63,13 +67,24 @@ public class SPlayer : MonoBehaviour {
         {
             if (rb.gravityScale == 0)
                 rb.gravityScale = 3;
-        }
+        }*/
     }
     // 固定间隔执行
     private void FixedUpdate()
     {
-        Run();
-        Jump();
+        Combine();
+        if (independent)
+        {
+            // 水平移动
+            Run();
+            // 跳跃
+            Jump();
+        }
+        else
+        {
+            DisCombine();
+        }
+        
     }
     //水平移动
     public void Run()
@@ -151,6 +166,50 @@ public class SPlayer : MonoBehaviour {
     {
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Platform"));
     }
+    //合体
+    void Combine()
+    {
+        if (Mathf.Abs(Input.GetAxis("SCooperate")) == 1.0f && independent && lPlayer.GetComponent<LPlayer>().independent)
+        {
+            StartCoroutine(Change());
+        }
+    }
+    //解除合体
+    void DisCombine()
+    {
+        if(Mathf.Abs(co) == 1.0f && lPlayer.GetComponent<LPlayer>().independent)
+        {
+            StartCoroutine(Restore());
+        }
+    }
+    IEnumerator Change()
+    {
+        independent = false;
+        lPlayer.GetComponent<LPlayer>().independent = false;
+        rb.simulated = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+        transform.DOMoveX(lPlayer.position.x, 1.0f);
+        transform.DOMoveY(lPlayer.position.y, 1.0f);
+        transform.DOScale(0.1f, 2.0f);
+        yield return StartCoroutine(Wait(2.0f));
+        GetComponent<Renderer>().enabled = false;
+        lPlayer.GetComponent<LPlayer>().independent = true;
+    }
+    IEnumerator Restore()
+    {
+        GetComponent<Renderer>().enabled = true;
+        transform.position = lPlayer.position;
+        transform.DOScale(0.2f, 2.0f);
+        yield return StartCoroutine(Wait(2.0f));
+        GetComponent<CircleCollider2D>().enabled = true;
+        rb.simulated = true;
+        independent = true;
+    }
+    IEnumerator Wait(float duration)
+    {
+        for (float timer = 0; timer < duration; timer += Time.deltaTime)
+            yield return 0;
+    }
     //转向
     void Flip()
     {
@@ -159,7 +218,6 @@ public class SPlayer : MonoBehaviour {
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-
     Vector2 getPos(Vector3 pos)
     {
         return new Vector2(pos.x, pos.y);

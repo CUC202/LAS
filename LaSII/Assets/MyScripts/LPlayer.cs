@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class LPlayer : MonoBehaviour {
     [HideInInspector]
@@ -15,6 +16,8 @@ public class LPlayer : MonoBehaviour {
     public bool jump = false;                   //跳跃开关
     [HideInInspector]
     public float co;                            //合作输入开关
+    [HideInInspector]
+    public bool independent;                    //角色独立状态
 
     //合作相关变量
     public Transform sPlayer;                   //影的位置信息
@@ -40,6 +43,7 @@ public class LPlayer : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.Find("LGroundCheck");
+        independent = true;
     }
 
     // 每帧检测指令
@@ -56,10 +60,18 @@ public class LPlayer : MonoBehaviour {
     // 固定间隔执行
     private void FixedUpdate()
     {
-        // 水平移动
-        Run();
-        // 跳跃
-        Jump();
+        Combine();
+        if (independent)
+        {
+            // 水平移动
+            Run();
+            // 跳跃
+            Jump();
+        }
+        else
+        {
+            DisCombine();
+        }
     }
     //水平移动
     public void Run()
@@ -134,7 +146,50 @@ public class LPlayer : MonoBehaviour {
     {
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Platform"));
     }
-
+    //合体
+    void Combine()
+    {
+        if (Mathf.Abs(Input.GetAxis("LCooperate")) == 1.0f && independent && sPlayer.GetComponent<SPlayer>().independent)
+        {
+            StartCoroutine(Change());
+        }
+    }
+    //解除合体
+    void DisCombine()
+    {
+        if (Mathf.Abs(co) == 1.0f && sPlayer.GetComponent<SPlayer>().independent)
+        {
+            StartCoroutine(Restore());
+        }
+    }
+    IEnumerator Change()
+    {
+        independent = false;
+        sPlayer.GetComponent<SPlayer>().independent = false;
+        rb.simulated = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+        transform.DOMoveX(sPlayer.position.x, 1.0f);
+        transform.DOMoveY(sPlayer.position.y, 1.0f);
+        transform.DOScale(0.1f, 2.0f);
+        yield return StartCoroutine(Wait(2.0f));
+        GetComponent<Renderer>().enabled = false;
+        sPlayer.GetComponent<SPlayer>().independent = true;
+    }
+    IEnumerator Restore()
+    {
+        GetComponent<Renderer>().enabled = true;
+        transform.position = sPlayer.position;
+        transform.DOScale(0.2f, 2.0f);
+        yield return StartCoroutine(Wait(2.0f));
+        GetComponent<CircleCollider2D>().enabled = true;
+        rb.simulated = true;
+        independent = true;
+    }
+    IEnumerator Wait(float duration)
+    {
+        for (float timer = 0; timer < duration; timer += Time.deltaTime)
+            yield return 0;
+    }
     //转向
     void Flip()
     {
