@@ -67,6 +67,9 @@
      <Compile Include="Assets\2DDL\2DLight\Core\Editor\Settings\TagLayerClass.cs" />
      <Compile Include="Assets\2DDL\2DLight\Core\Editor\SortingMethod.cs" />
      <Compile Include="Assets\2DDL\Add-ons\AddOnBase\Editor\AddOnBaseEditor.cs" />
+     <Compile Include="Assets\Editor\MyInspector.cs" />
+     <Compile Include="Assets\Editor\MyRangeAttribute.cs" />
+     <Compile Include="Assets\Editor\MyRangeAttributeDrawer.cs" />
      <None Include="Assets\Demigiant\DOTween\readme.txt" />
      <None Include="Assets\2DDL\2DLight\Shaders\StencilObject.shader" />
      <None Include="Assets\2DDL\2DLight\Shaders\DefaultTexturized.shader" />
@@ -77,6 +80,7 @@
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\2DDL\2DLight\Shaders\OffsetShader.shader" />
      <None Include="Assets\2DDL\2DLight\Shaders\DefaultTexturizedAdditive.shader" />
+     <None Include="Assets\MyShader\Additive Intensify.shader" />
      <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
      <None Include="Assets\Demigiant\DOTween\DOTween46.xml" />
      <None Include="Assets\2DDL\2DLight\Shaders\DefaultTexturizedWithAlpha.shader" />
