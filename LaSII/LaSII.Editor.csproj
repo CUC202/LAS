@@ -163,6 +163,9 @@
     <Compile Include="Assets\2DDL\2DLight\Core\Editor\Settings\TagLayerClass.cs" />
     <Compile Include="Assets\2DDL\2DLight\Core\Editor\SortingMethod.cs" />
     <Compile Include="Assets\2DDL\Add-ons\AddOnBase\Editor\AddOnBaseEditor.cs" />
+    <Compile Include="Assets\Editor\MyInspector.cs" />
+    <Compile Include="Assets\Editor\MyRangeAttribute.cs" />
+    <Compile Include="Assets\Editor\MyRangeAttributeDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\2DDL\2DLight\Shaders\CGTexturizing.shader" />

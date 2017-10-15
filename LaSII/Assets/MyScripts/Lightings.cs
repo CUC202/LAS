@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+//长平台上的三个点光源，固定不动，定时闪烁（类似萤火虫）
+//之后的两个悬挂点光源，会弧形摆动（以悬挂点为圆心旋转）
 //之后会在editor里做详细的规划
 public class Lightings : MonoBehaviour {
     public float size;
