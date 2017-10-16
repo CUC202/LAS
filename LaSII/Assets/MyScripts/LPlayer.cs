@@ -145,6 +145,15 @@ public class LPlayer : MonoBehaviour {
     public void GroundCheck()
     {
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Platform"));
+        if (grounded)
+        {
+            //如果速度大于限制值
+            if (Mathf.Abs(rb.velocity.x) > moveSpeed)
+            {
+                //限制水平方向的速度
+                rb.velocity = new Vector2(Mathf.Abs(rb.velocity.x)/ rb.velocity.x * moveSpeed, rb.velocity.y);
+            }
+        }
     }
     //合体
     void Combine()
@@ -170,7 +179,7 @@ public class LPlayer : MonoBehaviour {
         GetComponent<CircleCollider2D>().enabled = false;
         transform.DOMoveX(sPlayer.position.x, 1.0f);
         transform.DOMoveY(sPlayer.position.y, 1.0f);
-        transform.DOScale(0.1f, 2.0f);
+        transform.DOScale(0.05f, 2.0f);
         yield return StartCoroutine(Wait(2.0f));
         GetComponent<Renderer>().enabled = false;
         sPlayer.GetComponent<SPlayer>().independent = true;
@@ -179,7 +188,7 @@ public class LPlayer : MonoBehaviour {
     {
         GetComponent<Renderer>().enabled = true;
         transform.position = sPlayer.position;
-        transform.DOScale(0.2f, 2.0f);
+        transform.DOScale(0.1f, 2.0f);
         yield return StartCoroutine(Wait(2.0f));
         GetComponent<CircleCollider2D>().enabled = true;
         rb.simulated = true;

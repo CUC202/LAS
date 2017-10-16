@@ -68,8 +68,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1905693164523310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalPosition: {x: -23.7, y: 5.26, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children:
   - {fileID: 4374012246769344}
   - {fileID: 4532653016271514}
@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1215281984135908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.6, z: 0}
+  m_LocalPosition: {x: 0, y: -6.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4146688052262824}
@@ -116,7 +116,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.5
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -134,9 +134,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -4.89}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.5
 --- !u!114 &114252544508435424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,14 +154,15 @@ MonoBehaviour:
   grounded: 0
   jump: 0
   co: 0
+  independent: 0
   lPlayer: {fileID: 0}
   coForce: 50
   coSpeed: 5
-  moveSpeed: 5
-  moveForce: 50
+  moveSpeed: 3
+  moveForce: 10
   jumpTime: 0.3
-  initialJump: 10
-  jumpForce: 20
+  initialJump: 4
+  jumpForce: 5
 --- !u!120 &120647028419355150
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -279,12 +280,12 @@ SpriteRenderer:
   m_SortingLayerID: -1146459559
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: eaa1c5b89f996be4c95aa32bb70faaf2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 40005a378b49ffc4e880a68ed579b19e, type: 3}
   m_Color: {r: 0.08823532, g: 0.08823532, b: 0.08823532, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 20, y: 20}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

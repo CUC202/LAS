@@ -24,7 +24,7 @@ public class Lightings : MonoBehaviour {
     void Awake()
     {
         colortrans = 255 - 透明度;
-        transform.position = new Vector3(startp.x, startp.y, 0);
+        //transform.position = new Vector3(startp.x, startp.y, 0);
         this.transform.localScale = new Vector3(size, size, 1);
         nowsc = this.transform.localScale*size;
     }
@@ -44,7 +44,7 @@ public class Lightings : MonoBehaviour {
                 {
                     if (is_Moving) fly();
                     if (is_Rotate) rot();
-                    if (is_Flashing) flash();
+                    if (is_Flashing) this.GetComponent<SpriteRenderer>().DOBlendableColor(new Color(1.0f, 1.0f, 1.0f, colortrans / 255), 1.0f);flash();
                 }
                 break;
             case 2: break;
@@ -82,13 +82,13 @@ public class Lightings : MonoBehaviour {
     /// </summary>
     void flash()//不动闪烁
     {
-        this.GetComponent<Renderer>().material.DOBlendableColor(new UnityEngine.Color((float)colortrans / 255, (float)colortrans / 255, (float)colortrans / 255), 1.0f);
-        this.transform.DOScale(nowsc * 1.2f, 1.0f);
+        
+        this.transform.DOScale(nowsc * 2.0f, 1.0f);
         Invoke("flash2", 1.0f);
     }
     void flash2()
     {
-        this.GetComponent<Renderer>().material.DOBlendableColor(Color.white, 1.0f);
+        //this.GetComponent<SpriteRenderer>().DOBlendableColor(new Color(1.0f, 1.0f, 1.0f, colortrans / 255), 1.0f);
         this.transform.DOScale(nowsc, 1.0f);
         Invoke("flash", 1.0f);
     }

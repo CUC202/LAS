@@ -71,6 +71,8 @@ public class CameraMove : MonoBehaviour
 
         width = rightBorder - leftBorder;
         height = topBorder - downBorder;
+
+
         if ((x1 >= (width - 4 * p1w)) && Camera.main.fieldOfView <= 90)
         {
             Camera.main.fieldOfView += 25 * Time.deltaTime;

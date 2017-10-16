@@ -190,7 +190,7 @@ public class SPlayer : MonoBehaviour {
         GetComponent<CircleCollider2D>().enabled = false;
         transform.DOMoveX(lPlayer.position.x, 1.0f);
         transform.DOMoveY(lPlayer.position.y, 1.0f);
-        transform.DOScale(0.1f, 2.0f);
+        transform.DOScale(0.05f, 2.0f);
         yield return StartCoroutine(Wait(2.0f));
         GetComponent<Renderer>().enabled = false;
         lPlayer.GetComponent<LPlayer>().independent = true;
@@ -199,7 +199,7 @@ public class SPlayer : MonoBehaviour {
     {
         GetComponent<Renderer>().enabled = true;
         transform.position = lPlayer.position;
-        transform.DOScale(0.2f, 2.0f);
+        transform.DOScale(0.1f, 2.0f);
         yield return StartCoroutine(Wait(2.0f));
         GetComponent<CircleCollider2D>().enabled = true;
         rb.simulated = true;
