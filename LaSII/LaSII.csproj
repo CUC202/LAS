@@ -125,9 +125,11 @@
     <Compile Include="Assets\2DDL\Add-ons\Source.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
+    <Compile Include="Assets\MyScripts\CameraCtrl.cs" />
     <Compile Include="Assets\MyScripts\CameraMove.cs" />
     <Compile Include="Assets\MyScripts\Combine.cs" />
     <Compile Include="Assets\MyScripts\Darkness.cs" />
+    <Compile Include="Assets\MyScripts\Down.cs" />
     <Compile Include="Assets\MyScripts\GameCtrl.cs" />
     <Compile Include="Assets\MyScripts\Lightings.cs" />
     <Compile Include="Assets\MyScripts\LP_Skill.cs" />
