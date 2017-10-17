@@ -7,7 +7,7 @@ public class LPlayer : MonoBehaviour {
     [HideInInspector]
     public float hor;                           //水平输入
     [HideInInspector]
-    public bool facingRight = true;            //角色朝向
+    public bool facingRight = false;            //角色朝向
     [HideInInspector]
     public Rigidbody2D rb;                      //刚体
     [HideInInspector]
@@ -21,6 +21,8 @@ public class LPlayer : MonoBehaviour {
 
     //合作相关变量
     public Transform sPlayer;                   //影的位置信息
+    public float coTime;                        //合体施法时间
+    public float discoTime;                     //解除合体（合体技）判定时间
     public float coForce;                       //合作技能刚体力
     public float coSpeed;                       //合作技能初速度
 
@@ -204,10 +206,10 @@ public class LPlayer : MonoBehaviour {
         sPlayer.GetComponent<SPlayer>().independent = false;
         rb.simulated = false;
         GetComponent<CircleCollider2D>().enabled = false;
-        transform.DOMoveX(sPlayer.position.x, 1.0f);
-        transform.DOMoveY(sPlayer.position.y, 1.0f);
-        transform.DOScale(0.05f, 2.0f);
-        yield return StartCoroutine(Wait(2.0f));
+        transform.DOMoveX(sPlayer.position.x, coTime);
+        transform.DOMoveY(sPlayer.position.y, coTime);
+        transform.DOScale(0.05f,coTime);
+        yield return StartCoroutine(Wait(coTime));
         GetComponent<Renderer>().enabled = false;
         sPlayer.GetComponent<SPlayer>().independent = true;
     }

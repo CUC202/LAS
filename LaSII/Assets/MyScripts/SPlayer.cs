@@ -21,6 +21,8 @@ public class SPlayer : MonoBehaviour {
 
     //合作相关变量
     public Transform lPlayer;                   //光的位置信息
+    public float coTime;                        //合体施法时间
+    public float discoTime;                     //解除合体（合体技）判定时间
     public float coForce;                       //合作技能刚体力
     public float coSpeed;                       //合作技能初速度
 
@@ -38,11 +40,14 @@ public class SPlayer : MonoBehaviour {
     private float jumpTimer;                    //跳跃判断剩余时间
     private Transform groundCheck;              //落地检验物体
 
+    public Animator lPlayerAnima;               //动画状态机
+
     // 初始化
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.Find("SGroundCheck");
+        lPlayerAnima = GetComponent<Animator>();
         independent = true;
     }
     // 每帧检测指令
@@ -100,6 +105,30 @@ public class SPlayer : MonoBehaviour {
         {
             //限制水平方向的速度
             rb.velocity = new Vector2(hor * moveSpeed, rb.velocity.y);
+        }
+
+        //奔跑动画
+        if (grounded)
+        {
+            if (hor == 0)
+            {
+                lPlayerAnima.SetInteger("AnimaState", 0);
+            }
+            else
+            {
+                lPlayerAnima.SetInteger("AnimaState", 1);
+            }
+        }
+        else
+        {
+            if (rb.velocity.y > 0)
+            {
+                lPlayerAnima.SetInteger("AnimaState", 2);
+            }
+            else
+            {
+                lPlayerAnima.SetInteger("AnimaState", 3);
+            }
         }
 
         //根据移动方向翻转角色朝向

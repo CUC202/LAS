@@ -47,6 +47,9 @@ TagManager:
   - name: Midground
     uniqueID: 1577862957
     locked: 0
+  - name: Wall
+    uniqueID: 3068960169
+    locked: 0
   - name: Platform
     uniqueID: 4286674647
     locked: 0

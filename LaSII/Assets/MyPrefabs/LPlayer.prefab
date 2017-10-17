@@ -36,8 +36,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4639613310937330}
   - component: {fileID: 212267482607346668}
+  - component: {fileID: 95491531884340602}
   - component: {fileID: 50950951269223548}
   - component: {fileID: 58690621470840156}
+  - component: {fileID: 70063476007004094}
   - component: {fileID: 114729317153216562}
   m_Layer: 8
   m_Name: LPlayer
@@ -145,7 +147,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1695577612196612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.24, z: 0}
+  m_LocalPosition: {x: 0, y: -5.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4639613310937330}
@@ -197,9 +199,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -4.47}
+  m_Offset: {x: 0, y: -4.6}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 0.79
 --- !u!58 &58862097632782250
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -215,6 +217,38 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!70 &70063476007004094
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1551770548429180}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.83}
+  m_Size: {x: 1.37, y: 9.59}
+  m_Direction: 0
+--- !u!95 &95491531884340602
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1551770548429180}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 351fd800a74cdcb4fb747b8605cba85a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114283460903798650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -248,6 +282,8 @@ MonoBehaviour:
   co: 0
   independent: 0
   sPlayer: {fileID: 0}
+  coTime: 1
+  discoTime: 0
   coForce: 50
   coSpeed: 5
   moveSpeed: 3
@@ -255,6 +291,7 @@ MonoBehaviour:
   jumpTime: 0.3
   initialJump: 4
   jumpForce: 5
+  lPlayerAnima: {fileID: 0}
 --- !u!198 &198112875364574162
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -314,7 +351,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -601442785
+  randomSeed: 1452430632
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3644,8 +3681,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1252283707
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -3737,11 +3774,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1146459559
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: e40cbe2e59dd2c34298194b76e2b89cc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2dc5d1219815c3b46a80a5ad381b8548, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 20, y: 20}
@@ -3785,7 +3822,7 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.29
   m_FrontSortingLayerID: -1252283707
   m_BackSortingLayerID: 0
-  m_FrontSortingLayer: 5
+  m_FrontSortingLayer: 6
   m_BackSortingLayer: 0
   m_FrontSortingOrder: 0
   m_BackSortingOrder: -1
