@@ -6,45 +6,53 @@ using DG.Tweening;
 //之后的两个悬挂点光源，会弧形摆动（以悬挂点为圆心旋转）
 //之后会在editor里做详细的规划
 public class Lightings : MonoBehaviour {
+    public GameObject gameCtrl;
+
     public float size=1.0f;
     [Tooltip("1=点形  2=柱形  3=扇形 4=能量")]public int type;
 
     public bool is_Rotate;
-    public bool is_Moving;
-    public bool is_Flashing;
+    public bool is_Move;
+    public bool is_Flash;
     public Vector2 startp;
     public Vector2 endp;
     public float speed;
     public float pauseTime;
-    [Range(0,255)]public int 透明度=100;
+    public Color lightColor;
+    //flash
+    private bool is_flashing = false;
+    public float flashTime;
+    public float flashScale;
+
+    [Range(0,1)]public float alpha;
     Vector3 nowsc;
     // Use this for initialization
 
     int colortrans;
     void Awake()
     {
-        colortrans = 255 - 透明度;
         //transform.position = new Vector3(startp.x, startp.y, 0);
-        this.transform.localScale = new Vector3(size, size, 1);
-        nowsc = this.transform.localScale*size;
+        //transform.localScale = new Vector3(size, size, 1);
+        nowsc = transform.localScale;
+        lightColor = GetComponent<SpriteRenderer>().color;
     }
     void Start () {
-        move();
      }
 	
 	// Update is called once per frame
 	void Update () {
-        //move();
+        Move();
     }
-    void move()
+    void Move()
     {
         switch (type)
         {
             case 1:
                 {
-                    if (is_Moving) fly();
-                    if (is_Rotate) rot();
-                    if (is_Flashing) this.GetComponent<SpriteRenderer>().DOBlendableColor(new Color(1.0f, 1.0f, 1.0f, colortrans / 255), 1.0f);flash();
+                    if (is_Move) Fly();
+                    if (is_Rotate) Rot();
+                    if (is_Flash && !is_flashing)
+                        Flash();
                 }
                 break;
             case 2: break;
@@ -53,34 +61,34 @@ public class Lightings : MonoBehaviour {
             default: break;
         }
     }
-    void fly()//点形平移
+    void Fly()//点形平移
     {
         transform.DOLocalMove(new Vector3(endp.x, endp.y, 0), 2.0f, false);
-        Invoke("stay", 2.0f);
+        Invoke("Stay", 2.0f);
     }
-    void flyback()
+    void Flyback()
     {
         transform.DOLocalMove(new Vector3(startp.x, startp.y, 0), 2.0f, false);
-        Invoke("stay", 2.0f);
+        Invoke("Stay", 2.0f);
     }
     /// <summary>
     /// ///////////////////////
     /// </summary>
-    void rot()//柱形旋转
+    void Rot()//柱形旋转
     {
 
     }
     /// <summary>
     /// //////////////
     /// </summary>
-    void sca()//扇形扩大和缩小
+    void Sca()//扇形扩大和缩小
     {
 
     }
     /// <summary>
     /// /////////////////
     /// </summary>
-    void flash()//不动闪烁
+    /*void flash()//不动闪烁
     {
         
         this.transform.DOScale(nowsc * 2.0f, 1.0f);
@@ -88,14 +96,34 @@ public class Lightings : MonoBehaviour {
     }
     void flash2()
     {
-        //this.GetComponent<SpriteRenderer>().DOBlendableColor(new Color(1.0f, 1.0f, 1.0f, colortrans / 255), 1.0f);
+        this.GetComponent<SpriteRenderer>().DOBlendableColor(new Color(1.0f, 1.0f, 1.0f, colortrans / 255), 1.0f);
         this.transform.DOScale(nowsc, 1.0f);
         Invoke("flash", 1.0f);
+    }*/
+    void Flash()
+    {
+        StartCoroutine(FlashLight());
+    }
+    IEnumerator FlashLight()
+    {
+        is_flashing = true;
+        GetComponent<SpriteRenderer>().DOBlendableColor(new Color(1.0f, 1.0f, 1.0f, alpha), flashTime);
+        transform.DOScale(nowsc * flashScale, flashTime);
+        yield return StartCoroutine(Wait(flashTime));
+        GetComponent<SpriteRenderer>().DOBlendableColor( lightColor, flashTime);
+        transform.DOScale(nowsc, flashTime);
+        yield return StartCoroutine(Wait(flashTime));
+        is_flashing = false;
+    }
+    IEnumerator Wait(float duration)
+    {
+        for (float timer = 0; timer < duration; timer += Time.deltaTime)
+            yield return 0;
     }
     /// <summary>
     /// /////////////////////////
     /// </summary>
-    void stay()
+    void Stay()
     {
         switch (type)
         {
@@ -107,5 +135,9 @@ public class Lightings : MonoBehaviour {
         }
        
     }
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        gameCtrl.GetComponent<GameCtrl>().dead = true;
+    }
+
 }

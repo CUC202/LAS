@@ -7,7 +7,7 @@ public class LPlayer : MonoBehaviour {
     [HideInInspector]
     public float hor;                           //水平输入
     [HideInInspector]
-    public bool facingRight = false;            //角色朝向
+    public bool facingRight = true;            //角色朝向
     [HideInInspector]
     public Rigidbody2D rb;                      //刚体
     [HideInInspector]
@@ -38,11 +38,14 @@ public class LPlayer : MonoBehaviour {
     private float jumpTimer;                    //跳跃判断剩余时间
     private Transform groundCheck;              //落地检验物体
 
+    public Animator lPlayerAnima;               //动画状态机
+
     // 初始化
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.Find("LGroundCheck");
+        lPlayerAnima = GetComponent<Animator>();
         independent = true;
     }
 
@@ -89,6 +92,30 @@ public class LPlayer : MonoBehaviour {
             rb.velocity = new Vector2(hor * moveSpeed, rb.velocity.y);
         }
 
+        //奔跑动画
+        if(grounded)
+        {
+            if(hor == 0)
+            {
+                lPlayerAnima.SetInteger("AnimaState", 0);
+            }
+            else
+            {
+                lPlayerAnima.SetInteger("AnimaState", 1);
+            }
+        }
+        else
+        {
+            if(rb.velocity.y > 0)
+            {
+                lPlayerAnima.SetInteger("AnimaState", 2);
+            }
+            else
+            {
+                lPlayerAnima.SetInteger("AnimaState", 3);
+            }
+        }
+
         //根据移动方向翻转角色朝向
         if (hor > 0 && !facingRight)
             Flip();
@@ -117,10 +144,10 @@ public class LPlayer : MonoBehaviour {
             if (jumpInitial)
             {
                 rb.velocity = new Vector2(rb.velocity.x, initialJump);
-                if (Mathf.Abs(co) == 1.0f)
+                /*if (Mathf.Abs(co) == 1.0f)
                 {
                     rb.velocity += new Vector2(rb.position.x - sPlayer.position.x, rb.position.y - sPlayer.position.y) * coSpeed * co / Vector2.Distance(getPos(rb.position), getPos(sPlayer.position));
-                }
+                }*/
                 jumpInitial = false;
             }
             //在跳跃判定时间内，按住跳跃键会持续施加刚体力
@@ -128,10 +155,10 @@ public class LPlayer : MonoBehaviour {
             {
                 jumpTimer -= Time.fixedDeltaTime;
                 rb.AddForce(Vector2.up * jumpForce);
-                if (Mathf.Abs(co) == 1.0f)
+                /*if (Mathf.Abs(co) == 1.0f)
                 {
                     rb.AddForce(new Vector2(rb.position.x - sPlayer.position.x, rb.position.y - sPlayer.position.y) * coForce * co / Vector2.Distance(getPos(rb.position), getPos(sPlayer.position)));
-                }
+                }*/
 
             }
             //否则结束跳跃操作
