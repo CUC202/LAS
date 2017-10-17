@@ -18,6 +18,11 @@ public class LPlayer : MonoBehaviour {
     public float co;                            //合作输入开关
     [HideInInspector]
     public bool independent;                    //角色独立状态
+    //[HideInInspector]
+    //public float energy;//角色的能量
+    [Tooltip("异属性的伤害速度")]public float Harm;
+    [Tooltip("异属性的减速效果")]public float AccSlow;
+
 
     //合作相关变量
     public Transform sPlayer;                   //影的位置信息
@@ -241,4 +246,23 @@ public class LPlayer : MonoBehaviour {
     {
         return new Vector2(pos.x, pos.y);
     }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    switch(collision.gameObject.layer.ToString())
+    //    {
+    //        case "Item":break;
+    //        case "Shadow":
+    //            this.moveSpeed -= AccSlow * Time.deltaTime;//虚弱——减速
+    //            if (this.energy > 0f)
+    //            {
+    //                this.energy -= Harm * Time.deltaTime;
+    //            }
+    //            else
+    //            {
+    //                GameObject.Find("gameCtrl").GetComponent<GameCtrl>().dead = true;
+    //            }
+    //            break;
+    //    }
+
+    //}
 }

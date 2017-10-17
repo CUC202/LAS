@@ -137,7 +137,7 @@ public class Lightings : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameCtrl.GetComponent<GameCtrl>().dead = true;
+        
     }
 
 }

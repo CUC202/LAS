@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class SPlayer : MonoBehaviour {
+public class SPlayer : MonoBehaviour
+{
     [HideInInspector]
     public float hor;                           //水平输入
     [HideInInspector]
@@ -18,7 +19,13 @@ public class SPlayer : MonoBehaviour {
     public float co;                            //合作输入开关
     [HideInInspector]
     public bool independent;                    //角色独立状态
+    //[HideInInspector]
+    //public float energy;                        //能量
 
+    [Tooltip("异属性的伤害速度")]
+    public float Harm=1.0f;
+    [Tooltip("异属性的减速效果")]
+    public float AccSlow=0.1f;
     //合作相关变量
     public Transform lPlayer;                   //光的位置信息
     public float coTime;                        //合体施法时间
@@ -89,7 +96,7 @@ public class SPlayer : MonoBehaviour {
         {
             DisCombine();
         }
-        
+
     }
     //水平移动
     public void Run()
@@ -175,7 +182,7 @@ public class SPlayer : MonoBehaviour {
                 if (Mathf.Abs(co) == 1.0f)
                 {
                     jumpTimer -= Time.fixedDeltaTime;
-                    rb.AddForce(new Vector2(rb.position.x - lPlayer.position.x, rb.position.y - lPlayer.position.y) * coForce * co/ Vector2.Distance(getPos(rb.position), getPos(lPlayer.position)));
+                    rb.AddForce(new Vector2(rb.position.x - lPlayer.position.x, rb.position.y - lPlayer.position.y) * coForce * co / Vector2.Distance(getPos(rb.position), getPos(lPlayer.position)));
                 }
                 else
                 {
@@ -206,7 +213,7 @@ public class SPlayer : MonoBehaviour {
     //解除合体
     void DisCombine()
     {
-        if(Mathf.Abs(co) == 1.0f && lPlayer.GetComponent<LPlayer>().independent)
+        if (Mathf.Abs(co) == 1.0f && lPlayer.GetComponent<LPlayer>().independent)
         {
             StartCoroutine(Restore());
         }
@@ -251,5 +258,26 @@ public class SPlayer : MonoBehaviour {
     {
         return new Vector2(pos.x, pos.y);
     }
+    /// <summary>
+    /// /////////////////////////////
+    /// </summary>
+    /// <param name="collision"></param>
 
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    switch (collision.gameObject.layer.ToString())
+    //    {
+    //        case "Light":
+    //            this.moveSpeed -= AccSlow * Time.deltaTime;//虚弱——减速
+    //            if (this.energy > 0f)
+    //            {
+    //                this.energy -= Harm * Time.deltaTime;
+    //            }
+    //            else
+    //            {
+    //                GameObject.Find("gameCtrl").GetComponent<GameCtrl>().dead = true;
+    //            }
+    //            break;
+    //    }
+    //}
 }
