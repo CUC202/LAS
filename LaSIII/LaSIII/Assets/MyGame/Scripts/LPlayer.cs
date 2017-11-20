@@ -44,6 +44,7 @@ public class LPlayer : MonoBehaviour
     /// </summary>
     public float combineSpeed;         //合体速度限制
     public float combineForce;         //合体力
+    public float combineDis;           //抓取队友的范围
 
     bool combineInitial;               //合体初次启动确认
     /// <summary>
@@ -55,9 +56,10 @@ public class LPlayer : MonoBehaviour
     /// </summary>
     [HideInInspector]
     public Vector2 shootAim;           //射击方向
-    public float bulletSpeed;          //子弹状态运动初速度
     [HideInInspector]
     public bool bulletInitial;         //子弹初次启动确认
+
+    public float bulletSpeed;          //子弹状态运动初速度
 
 
 
@@ -183,9 +185,9 @@ public class LPlayer : MonoBehaviour
             status = Status.combining;
             combineInitial = true;
         }
-        if (Input.GetAxis("LCombine") == -1 && sPlayer.GetComponent<SPlayer>().status == SPlayer.Status.normal)//抓取队友
+        if (Input.GetAxis("LCombine") == -1 && sPlayer.GetComponent<SPlayer>().status == SPlayer.Status.normal && Vector2.Distance(transform.position, sPlayer.transform.position) < combineDis)//抓取队友
         {
-
+            sPlayer.GetComponent<SPlayer>().Combine();
         }
     }
     // 检测并初始化射击
