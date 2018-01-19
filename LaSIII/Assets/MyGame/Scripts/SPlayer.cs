@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using DG.Tweening;
 public class SPlayer : MonoBehaviour
 {
     [HideInInspector]
@@ -297,5 +297,19 @@ public class SPlayer : MonoBehaviour
         if (jump)
             Jump();
     }
-    // 
+    //
+    void AttackCheck()
+    {
+		float timer=0.0f;
+		if (Input.GetKeyDown ("SAttack")) 
+		{
+			Vector2 oldpos = this.transform.position;
+			timer += Time.deltaTime;
+		}
+
+    }
+    void Attack()//仅在独立状态下攻击有效，斩断链条，击碎脆弱的方块
+    {
+		Debug.Log("SAttcak!");
+    }
 }
