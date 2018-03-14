@@ -304,13 +304,16 @@
     <Compile Include="Assets\Game Jam Template\Scripts\Menu\SetAudioLevels.cs" />
     <Compile Include="Assets\Game Jam Template\Scripts\Menu\ShowPanels.cs" />
     <Compile Include="Assets\Game Jam Template\Scripts\Menu\StartOptions.cs" />
+    <Compile Include="Assets\Scripts\DataScripts\GameDataManager.cs" />
+    <Compile Include="Assets\Scripts\DataScripts\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\DataScripts\testscript.cs" />
+    <Compile Include="Assets\Scripts\DataScripts\XmlManager.cs" />
     <Compile Include="Assets\Scripts\PlatformScripts\PlatLCtrl.cs" />
     <Compile Include="Assets\Scripts\PlatformScripts\PlatSwitch.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\LPlayerCtrl.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerCtrl.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\SPlayerCtrl.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\test.cs" />
-    <Compile Include="Assets\Scripts\PlayerScripts\testscript.cs" />
     <Compile Include="Assets\Scripts\UIScripts\GameManager.cs" />
     <Compile Include="Assets\Sprites\PlayerSprites\Black\Lmark.cs" />
     <Compile Include="Assets\Tilemap\Brushes\Tint Brush Smooth\Scripts\TintTextureGenerator.cs" />
@@ -325,6 +328,7 @@
     <None Include="Assets\Game Jam Template\Fonts\OpenSans\License!.txt" />
     <None Include="Assets\Game Jam Template\GameJamTemplateReadMe.txt" />
     <None Include="Assets\Game Jam Template\README.txt" />
+    <None Include="Assets\LaSData.Xml" />
     <None Include="Assets\Tilemap\Brushes\Tint Brush Smooth\Shaders\TintedTilemap.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

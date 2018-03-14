@@ -12,6 +12,7 @@ public class LPlayerCtrl : MonoBehaviour {
     [HideInInspector]
     public bool facingRight = false;   //角色朝向
     public GameObject sPlayer;         //
+    Animator animator;
     /// <summary>
     /// /////////////////////////水平移动变量//////////////////////////////////
     /// </summary>
@@ -50,6 +51,7 @@ public class LPlayerCtrl : MonoBehaviour {
     {
         status = Status.normal;
         rBody = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
         platSpeed = 0.0f;
         environSpeed = 0.0f;
     }
@@ -123,6 +125,7 @@ public class LPlayerCtrl : MonoBehaviour {
         if (jumpInitial)
         {
             rBody.velocity = new Vector2(rBody.velocity.x, jumpSpeed);
+            animator.SetBool("Jump", true);
             jumpInitial = false;
         }
         //启动后在跳跃判定时间内，按住跳跃键会持续施加刚体力
@@ -142,6 +145,7 @@ public class LPlayerCtrl : MonoBehaviour {
     void GroundCheck()
     {
         grounded = Physics2D.OverlapPoint(groundCheck.position, isGround);
+        animator.SetBool("Ground", grounded);
     }
 
     // 检测并初始化发光状态
@@ -166,6 +170,11 @@ public class LPlayerCtrl : MonoBehaviour {
         else if (hor < 0 && facingRight)
             Flip();
         GroundCheck();
+        if (grounded && animator.GetBool("Jump"))
+        {
+            animator.SetBool("Jump", false);
+        }
+        animator.SetFloat("SpeedY", rBody.velocity.y);
         JumpCheck();
         LightCheck();
     }
